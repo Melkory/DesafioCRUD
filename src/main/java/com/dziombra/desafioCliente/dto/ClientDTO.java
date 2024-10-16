@@ -1,5 +1,6 @@
 package com.dziombra.desafioCliente.dto;
 
+import com.dziombra.desafioCliente.entities.Client;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -26,6 +27,15 @@ public class ClientDTO {
         this.income = income;
         this.birthDate = birthDate;
         this.children = children;
+    }
+
+    public ClientDTO (Client entity) {
+        id = entity.getId();
+        name = entity.getName();
+        cpf = entity.getCpf();
+        income = entity.getIncome();
+        birthDate = entity.getBirthDate();
+        children = entity.getChildren();
     }
 
     public Long getId() {
