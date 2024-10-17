@@ -3,6 +3,7 @@ package com.dziombra.desafioCliente.services;
 import com.dziombra.desafioCliente.dto.ClientDTO;
 import com.dziombra.desafioCliente.entities.Client;
 import com.dziombra.desafioCliente.repositories.ClientRepository;
+import com.dziombra.desafioCliente.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,7 +19,7 @@ public class ClientService {
 
     @Transactional(readOnly = true)
     public ClientDTO findById (Long id) {
-        Client client = repository.findById(id).orElseThrow();
+        Client client = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Recurso não encontrado!"));
         return new ClientDTO(client);
     }
 
